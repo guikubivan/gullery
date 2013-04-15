@@ -12,7 +12,10 @@ GEM
     activeresource (2.3.18)
       activesupport (= 2.3.18)
     activesupport (2.3.18)
+    builder (3.2.0)
     json (1.7.7)
+    markaby (0.7.2)
+      builder (>= 2.0.0)
     pg (0.15.1)
     rack (1.1.6)
     rails (2.3.18)
@@ -32,6 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  markaby
   pg
   rails (= 2.3.18)
   rdoc

@@ -8,6 +8,8 @@ gem 'rmagick'
 
 gem 'RedCloth'
 
+gem 'markaby'
+
 group :production do
   gem "pg"
 end
