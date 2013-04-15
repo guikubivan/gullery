@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.0.2'
+RAILS_GEM_VERSION = '2.3.18'
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
