@@ -8,8 +8,6 @@ gem 'rmagick', :require => 'RMagick'
 
 gem 'RedCloth'
 
-gem 'markaby', :require => ['markaby', 'markaby/rails']
-
 group :test, :development  do
   #Only needed if you're using mysql locally
   gem 'mysql'
