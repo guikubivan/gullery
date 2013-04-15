@@ -60,6 +60,6 @@ end
 
 require 'authenticated_system'
 require "taggable"
-require "rails_hacks"
+#require "rails_hacks"
 
 Markaby::Rails.load
