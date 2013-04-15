@@ -7,3 +7,7 @@ gem 'rdoc'
 gem 'rmagick'
 
 gem 'RedCloth'
+
+group :production do
+  gem "pg"
+end
