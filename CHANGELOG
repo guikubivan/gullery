@@ -1,3 +1,9 @@
+15 April 2013 - 0.0.3
+  - Upgraded to Rails 2.3.18
+    - Updated Markaby plugin and removed hacks
+    - Added Gemfile and added support for gem loading with blunder
+  - Works on Heroku still
+
 15 June 2008 - 0.0.2
   - Upgraded to Rails 2.0
     - Changed start_form_tag to form_tag do
