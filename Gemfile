@@ -10,6 +10,12 @@ gem 'RedCloth'
 
 gem 'markaby'
 
+group :test, :development  do
+  #Only needed if you're using mysql locally
+  gem 'mysql'
+  #gem "sqlite3-ruby"
+end
+
 group :production do
   gem "pg"
 end
