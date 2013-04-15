@@ -14,7 +14,7 @@ html do
        end
      
        div :id => "content" do
-         self << content_for_layout
+         yield
        end
      
        div :id => "footer" do
