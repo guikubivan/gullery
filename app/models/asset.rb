@@ -8,7 +8,7 @@ class Asset < ActiveRecord::Base
 
   belongs_to :project
     
-  acts_as_taggable
+  #acts_as_taggable
 
   # Starts with '/' but is relative to 'public'
   @@asset_dir = '/system/assets'
