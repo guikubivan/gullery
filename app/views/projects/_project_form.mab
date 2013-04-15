@@ -1,4 +1,4 @@
-form_for(:project, project, :url => { :controller => 'projects', :action => 'create' }, :html => { :onsubmit => "Element.show('loading')" } ) do | form |
+form_for(:project, :url => { :controller => 'projects', :action => 'create' }, :html => { :onsubmit => "Element.show('loading')" } ) do | form |
   self << "New Project Name: "
   self << form.text_field(:name, :size => 20)
   self << submit_tag("Save")
