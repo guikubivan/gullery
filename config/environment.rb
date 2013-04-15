@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.0.2'
+RAILS_GEM_VERSION = '2.3.18'
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
@@ -61,5 +61,5 @@ end
 require 'authenticated_system'
 require "taggable"
 require "rails_hacks"
-require "RMagick"
-require "markaby"
+
+Markaby::Rails.load
