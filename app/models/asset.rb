@@ -1,8 +1,6 @@
 class Asset < ActiveRecord::Base
   include Magick
   
-  cattr_accessor :thumbnail_width, :thumbnail_height
-
   validates_presence_of :project_id, :path
   validates_associated :project
 
@@ -14,9 +12,17 @@ class Asset < ActiveRecord::Base
   @@asset_dir = '/system/assets'
 
   #@@thumbnail_width = '200'
-  @@thumbnail_width = '100'
+  @@thumbnail_width = 100
   #@@thumbnail_height = '120'
-  @@thumbnail_height = '100'
+  @@thumbnail_height = 100
+
+  def self.thumbnail_width
+   @@thumbnail_width.to_s
+  end
+  
+  def self.thumbnail_height
+    @@thumbnail_height.to_s
+  end
 
   # Returns the full path to this asset on disk. /Users/bert/photos/pigeon.jpg
   # TODO Take size argument
