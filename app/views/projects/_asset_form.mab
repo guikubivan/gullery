@@ -6,6 +6,13 @@ form_for(:asset, @asset, :url => { :controller => 'assets', :action => 'create' 
   br
   self << "Caption: "
   form.text_field(:caption, :size => 20)
+  br
+  self << "Art medium: "
+  form.text_field(:artwork_medium, :size => 15)
+  br
+  self << "Measurements: "
+  form.text_field(:measurements, :size => 12)
+  br  
   submit_tag("Save")
   image_tag('spinner.gif', :style => 'display: none;', :id => 'loading')
 end

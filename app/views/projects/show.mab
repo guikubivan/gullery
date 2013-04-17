@@ -1,13 +1,23 @@
 @indent = 0
-div(:id => "project_description_#{@project.id}", :class => 'description') do
-  textilize(@project.description.blank? ? '&nbsp;' : @project.description)
+if @project.description
+  div(:id => "project_description_#{@project.id}", :class => 'description') do
+    textilize(@project.description.blank? ? '&nbsp;' : @project.description)
+  end
 end
-
-ul :id => 'asset_list' do
-  render :partial => 'asset', :collection => @project.assets
-end
-
 if session[:user]
+  ul :id => 'asset_list' do
+    render :partial => 'asset', :collection => @project.assets
+  end
+
+else
+  div :class => 'slideshow' do
+    render :partial => 'photo', :collection => @project.assets
+  end
+  ul :id => 'thumb_list', :class => 'jcarousel-skin-tango' do
+    render :partial => 'thumb', :collection => @project.assets
+  end
+end
+if @session[:user]
   render(:partial => 'asset_form')
   sortable_element  'asset_list', 
                     :url => capture { assets_url(:action => 'sort', :project_id => @project) },

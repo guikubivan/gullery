@@ -1,0 +1,16 @@
+@indent = 0
+div :class=> 'photoitem', :style=> "height:480px;" do
+  image_tag(photo.web_path);
+  div :class => "panel-overlay" do 
+    h3 {photo.caption}
+    if !photo.measurements.empty? | !photo.artwork_medium.empty?
+      p :class => 'photometa' do
+	span {"("}
+        span {photo.artwork_medium} if !photo.artwork_medium.empty?
+        span {", " + photo.measurements} if !photo.measurements.empty?
+	span {")"}
+      end
+    end
+  end
+  #div :class => 'overlay'
+end

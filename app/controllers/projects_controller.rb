@@ -46,5 +46,16 @@ class ProjectsController < ApplicationController
     end
     render :nothing => true
   end
+
+  def feed
+    @projects = Project.find(:all, :order => "id DESC")
+    render_without_layout
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+  end
   
+  def rss 
+    @project = Project.find params[:id]
+    render_without_layout
+    @headers["Content-Type"] = "application/xml; charset=utf-8"
+  end
 end

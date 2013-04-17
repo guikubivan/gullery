@@ -1,27 +1,164 @@
 html do
    head do
      title { show_page_title }
-     stylesheet_link_tag 'site', 'lightbox'
-     javascript_include_tag :defaults
-     javascript_include_tag 'lightbox'
+     #title { "Nayabei Vanwoerkom - Artwork" }
+     stylesheet_link_tag 'style', 'jquery.jcarousel.css', 'skin'
+     if session[:user]
+       stylesheet_link_tag 'lightbox'
+       javascript_include_tag :defaults
+       javascript_include_tag 'scriptaculous.js?load=effect,builder'
+       javascript_include_tag 'lightbox'
+     else
+       #gallery fade effect
+       javascript_include_tag 'jquery-1.3.2.min.js'
+       javascript_include_tag 'jquery.jcarousel.pack.js'
+
+       script :type => "text/javascript" do
+"jQuery.noConflict();
+
+function viewpic(index){
+  var active = jQuery('.slideshow div.active'),
+    curIndex = jQuery('div.photoitem').index(active),
+      thumbIndex = curIndex+1,
+	newThumbIndex = index+1;
+  if(curIndex == index)return;
+  var selector = '.slideshow div.photoitem:eq('+index+')',
+    next = jQuery(selector);
+  active.fadeTo('slow', 0.0);
+  next.css('opacity', '0.0');
+  //active.css('display', 'hidden').fadeOut('slow');
+  next.addClass('active');
+  next.fadeTo('slow', 1.0);
+  active.removeClass('active last-active');
+  
+  jQuery('li.jcarousel-item[jcarouselindex='+thumbIndex+'] img').fadeTo(0,.5);
+  jQuery('li.jcarousel-item[jcarouselindex='+newThumbIndex+'] img').fadeTo(0,.5);
+
+}
+
+
+jQuery(document).ready(function(){
+
+
+  jQuery('#thumb_list').jcarousel({
+    scroll:2 
+  });
+
+  jQuery('.slideshow div:first').addClass('active');
+
+  jQuery('li.jcarousel-item[jcarouselindex] img').each(function() {
+
+    jQuery(this).mouseover(function() {
+      var currentOpacity = jQuery(this).css('opacity').toString();
+      jQuery(this).fadeTo(0,1);
+
+      jQuery(this).mouseout(function() {
+        if(currentOpacity!='1'){
+          jQuery(this).fadeTo(0,.5);
+        }
+      });
+
+    });
+  });
+
+
+});"
+       end
+     end
+     script :type => "text/javascript" do
+       "b0 = new Image();
+b0.src = '/images/butterfly0.gif';
+
+b1 = new Image();
+b1.src = '/images/butterfly.gif';"
+     end
    end
 
    body do
-     div :id => "container" do
-       
-       div :id => "header" do
-         h1 { show_page_nav }
+     div :id =>"left-nav" do
+      
+       div :id => 'nav' do
+         ul do
+
+           li :class => 'home' do
+             a :href => '/' do
+               img :src => '/images/home.gif', :title => 'Home'
+             end
+           end
+           li :class => 'artwork' do
+             link_to('Artwork', 'javascript:;')
+             ul :class => 'submenu', :style=> 'display: block' do
+               li do
+                 link_to('Paintings', paintings_url)
+               end 
+               li do
+                 link_to('Photography', photography_url)
+               end 
+             end
+           end
+           li do
+             a :href=>'/contact.html' do
+               'Contact'
+             end
+           end
+           li do
+             a :href=>'/about.html' do
+               'About'
+             end
+           end
+           li do
+             a :href=>'/cv.html' do
+               'CV'
+             end
+           end
+         end
        end
-     
-       div :id => "content" do
+     end
+
+     div :class => 'float-right-top absolute' do
+       img :src => '/images/bird-right.gif'
+     end
+
+     div :id => "header", :style=>'' do
+       #h1 { show_page_nav }
+       div :id=>'breadcrumb' do
+         h2 :class => 'subtitle' do 
+           show_page_nav
+         end
+       end
+       a :href => '/' do 
+         div do 
+           h1 {'Nayabei'}
+         end
+       end
+       hr :class => 'diamond'
+     end
+
+     div :id => "content" do
+       div :id => "gullery_content" do
          yield
        end
-     
+    
+ 
        div :id => "footer" do
-         textilize %(powered by "gullery":http://nubyonrails.com/pages/gullery)
+         #textilize %(modified by "pablo":http://mypage.iu.edu/~gvanwoer)
+         if session[:user]
+           link_to( "Logout", logout_url)
+         else
+           link_to( "Login", login_url)
+         end
+         div :style=>"position:absolute;bottom:0;right:0;" do
+           span {"Web design by "}
+           a :href=>'http://guikubi.com', :target => "_blank" do
+             'G. Pablo Vanwoerkom'
+           end
+         end
        end
     
-    end
-
+     end
+     #google analytics helper function
+     if @current_action != 'login' && @current_action != 'logout'
+       show_analytics
+     end
    end
 end

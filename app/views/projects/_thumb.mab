@@ -1,0 +1,5 @@
+@indent = 0
+#li :style => "width:" + Asset.thumbnail_width+";height:" + Asset.thumbnail_height do
+li :style => "width:" + Asset.thumbnail_width+"px;height:" + Asset.thumbnail_height + "px;" do
+  image_tag(thumb.web_path(:thumb), :width => Asset.thumbnail_width, :height => Asset.thumbnail_height, :onclick => "viewpic(jQuery(this).parent().attr('jcarouselindex')-1);")
+end

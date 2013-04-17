@@ -6,7 +6,14 @@ class AssetsController < ApplicationController
     @asset = Asset.new params[:asset]
     @asset.position = Asset.count
     if @asset.save
-      redirect_to projects_url(:action => 'show', :id => @asset.project_id)
+      case @asset.project_id
+      when 2
+        redirect_to photography_url
+      when 1
+        redirect_to paintings_url
+      else
+        redirect_to projects_url(:action => 'show', :id => @asset.project_id)
+      end
     else
       render :inline => "<%= error_messages_for :asset %>"
     end
@@ -24,7 +31,23 @@ class AssetsController < ApplicationController
       render :text => textilight(@asset.caption)
     end
   end
+
+  def update_artwork_medium
+    @asset = Asset.find params[:id]
+    @asset.artwork_medium = params[:value]
+    if @asset.save
+      render :text => textilight(@asset.artwork_medium)
+    end
+  end
   
+  def update_measurements
+    @asset = Asset.find params[:id]
+    @asset.measurements = params[:value]
+    if @asset.save
+      render :text => textilight(@asset.measurements)
+    end
+  end
+
   def sort
     asset_ids = params[:asset_list]
     asset_ids.each_with_index do |asset_id, index|

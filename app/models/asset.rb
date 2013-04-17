@@ -13,8 +13,10 @@ class Asset < ActiveRecord::Base
   # Starts with '/' but is relative to 'public'
   @@asset_dir = '/system/assets'
 
-  @@thumbnail_width = 200
-  @@thumbnail_height = 120
+  #@@thumbnail_width = '200'
+  @@thumbnail_width = '100'
+  #@@thumbnail_height = '120'
+  @@thumbnail_height = '100'
 
   # Returns the full path to this asset on disk. /Users/bert/photos/pigeon.jpg
   # TODO Take size argument
@@ -30,7 +32,6 @@ class Asset < ActiveRecord::Base
       path.gsub /(\..*?)$/, "_#{size.to_s}\\1"
     end
   end
-
 
   # Called automatically when saved from HTML forms
   def file_field=(file_field)
