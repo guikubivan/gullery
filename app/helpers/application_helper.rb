@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def show_page_nav
-    user = User.find_first
+    user = User.find(:first)
     return 'gullery photo gallery' if user.nil?
     #nav = link_to(user.company, :controller => '/')
     nav = user.company
