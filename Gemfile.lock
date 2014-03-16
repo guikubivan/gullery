@@ -13,7 +13,6 @@ GEM
       activesupport (= 2.3.18)
     activesupport (2.3.18)
     json (1.7.7)
-    mysql (2.9.1)
     pg (0.15.1)
     rack (1.1.6)
     rails (2.3.18)
@@ -27,14 +26,15 @@ GEM
     rdoc (4.0.1)
       json (~> 1.4)
     rmagick (2.13.2)
+    sqlite3 (1.3.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   RedCloth
-  mysql
   pg
   rails (= 2.3.18)
   rdoc
   rmagick
+  sqlite3

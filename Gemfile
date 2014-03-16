@@ -10,8 +10,8 @@ gem 'RedCloth'
 
 group :test, :development  do
   #Only needed if you're using mysql locally
-  gem 'mysql'
-  #gem "sqlite3-ruby"
+  #gem 'mysql'
+  gem "sqlite3"
 end
 
 group :production do
