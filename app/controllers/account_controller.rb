@@ -1,10 +1,11 @@
+require 'authenticated_system'
 class AccountController < ApplicationController
   include AuthenticatedSystem
 
   #observer :user_observer
 
   before_filter :login_required, :only => [:update_description]
-  
+
   def update_description
     current_user.description = params[:value]
     if current_user.save
@@ -17,11 +18,11 @@ class AccountController < ApplicationController
   #
   #   before_filter :login_required                            # restrict all actions
   #   before_filter :login_required, :only => [:edit, :update] # only restrict these actions
-  # 
+  #
   # To skip this in a subclassed controller:
   #
   #   skip_before_filter :login_required
-  
+
   def index
     redirect_to(:action => 'signup') unless logged_in? or User.count > 0
   end
@@ -34,8 +35,9 @@ class AccountController < ApplicationController
     return unless request.post?
     ::ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:session_expires => 4.weeks.from_now) if params[:remember_me]
     self.current_user = User.authenticate(params[:login], params[:password])
+    p self.current_user
     if current_user
-      redirect_back_or_default(:controller => '/')
+      redirect_back_or_default(:controller => 'projects')
       flash[:notice] = "Logged in successfully"
     else
       flash[:notice] = "Please try again"
@@ -57,7 +59,7 @@ class AccountController < ApplicationController
       flash[:notice] = "Thanks for signing up!"
     end
   end
-  
+
   # Sample method for activating the current user
   #def activate
   #  @user = User.find_by_activation_code(params[:id])
@@ -73,5 +75,5 @@ class AccountController < ApplicationController
     flash[:notice] = "You have been logged out."
     redirect_back_or_default(:controller => '/')
   end
-  
+
 end

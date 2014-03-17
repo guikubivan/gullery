@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
-  
+
   before_filter :login_required, :only => [:create, :update_description, :destroy, :sort]
-  
+
   def index
     if User.count == 0
       redirect_to signup_url
@@ -13,6 +13,17 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find params[:id]
+    p @project
+  end
+
+  def show_paintings
+    @project = Project.find 1
+    render :template => "show"
+  end
+
+  def show_photography
+    @project = Project.find 2
+    render :template => "show"
   end
 
   def create
@@ -24,7 +35,7 @@ class ProjectsController < ApplicationController
       render :action => 'error'
     end
   end
-  
+
   def update_description
     @project = Project.find params[:id]
     @project.description = params[:value]
@@ -32,7 +43,7 @@ class ProjectsController < ApplicationController
       render :text => textilize(@project.description)
     end
   end
-  
+
   def destroy
     @project = Project.find params[:id]
     @project.destroy
@@ -52,8 +63,8 @@ class ProjectsController < ApplicationController
     render_without_layout
     @headers["Content-Type"] = "application/xml; charset=utf-8"
   end
-  
-  def rss 
+
+  def rss
     @project = Project.find params[:id]
     render_without_layout
     @headers["Content-Type"] = "application/xml; charset=utf-8"

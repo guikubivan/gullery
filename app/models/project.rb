@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   end
 
   def poster_asset
-    assets.count > 0 ? assets.first : Asset.new(:path => '/images/overlay.png')
+    assets.count > 0 ? assets.first : Asset.new(:path => '/assets/overlay.png')
   end
 
 end

@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
   def show_page_title
     #!@user.nil? && !@user.company.blank? ? @user.company : 'gullery photo gallery'
     if @project
@@ -17,17 +17,17 @@ module ApplicationHelper
     nav = user.company
     if @project
       case @project.id
-      when 2 
-        #nav += ' ' + link_to((@project.name), photography_url) if @project  
-        nav += ' ' + content_tag(:small, link_to((@project.name), photography_url)) if @project  
-      when 1 
-        nav += ' ' + content_tag(:small, link_to((@project.name), paintings_url)) if @project
+        when 2
+          #nav += ' ' + link_to((@project.name), photography_url) if @project
+          nav += ' ' + content_tag(:small, link_to((@project.name), photography_url)) if @project
+        when 1
+          nav += ' ' + content_tag(:small, link_to((@project.name), paintings_url)) if @project
         #nav += ' ' + link_to((@project.name), paintings_url) if @project
-      else
-        nav += ' ' + content_tag(:small, link_to((@project.name), projects_url(:action => 'show', :id => @project))) if @project
+        else
+          nav += ' ' + content_tag(:small, link_to((@project.name), projects_url(:action => 'show', :id => @project))) if @project
       end
     else
-        nav += ' ' + content_tag(:small, link_to((@project.name), projects_url(:action => 'show', :id => @project))) if @project
+      nav += ' ' + content_tag(:small, link_to((@project.name), projects_url(:action => 'show', :id => @project))) if @project
     end
     nav
   end
@@ -45,19 +45,19 @@ pageTracker._trackPageview();
 } catch(err) {}</script>
 
     EOT
-  end  
-  
+  end
+
   def selected(path)
     request.path_parameters.values.any?{|pp| pp == path} ? 'selected' : ''
   end
-  
+
   def mailto(email)
     link_to email, "mailto:#{email}"
   end
-  
+
   # Hack for Markaby and Rails 2.0
   def string_path(string)
     string
   end
-  
+
 end

@@ -2,16 +2,17 @@ html do
    head do
      title { show_page_title }
      #title { "Nayabei Vanwoerkom - Artwork" }
-     stylesheet_link_tag 'style', 'jquery.jcarousel.css', 'skin'
+     text! stylesheet_link_tag 'style', 'jquery.jcarousel.css', 'skin'
+
      if session[:user]
-       stylesheet_link_tag 'lightbox'
-       javascript_include_tag :defaults
-       javascript_include_tag 'scriptaculous.js?load=effects,builder'
-       javascript_include_tag 'lightbox'
+       text! stylesheet_link_tag 'lightbox'
+       text! javascript_include_tag :defaults
+       text! javascript_include_tag 'scriptaculous.js?load=effects,builder'
+       text! javascript_include_tag 'lightbox'
      else
        #gallery fade effect
-       javascript_include_tag 'jquery-1.3.2.min.js'
-       javascript_include_tag 'jquery.jcarousel.pack.js'
+       text! javascript_include_tag 'jquery-1.3.2.min.js'
+       text! javascript_include_tag 'jquery.jcarousel.pack.js'
 
        script :type => "text/javascript" do
 "jQuery.noConflict();
@@ -30,7 +31,7 @@ function viewpic(index){
   next.addClass('active');
   next.fadeTo('slow', 1.0);
   active.removeClass('active last-active');
-  
+
   jQuery('li.jcarousel-item[jcarouselindex='+thumbIndex+'] img').fadeTo(0,.5);
   jQuery('li.jcarousel-item[jcarouselindex='+newThumbIndex+'] img').fadeTo(0,.5);
 
@@ -41,7 +42,7 @@ jQuery(document).ready(function(){
 
 
   jQuery('#thumb_list').jcarousel({
-    scroll:2 
+    scroll:2
   });
 
   jQuery('.slideshow div:first').addClass('active');
@@ -67,16 +68,16 @@ jQuery(document).ready(function(){
      end
      script :type => "text/javascript" do
        "b0 = new Image();
-b0.src = '/images/butterfly0.gif';
+b0.src = '/assets/butterfly0.gif';
 
 b1 = new Image();
-b1.src = '/images/butterfly.gif';"
+b1.src = '/assets/butterfly.gif';"
      end
    end
 
    body do
      div :id =>"left-nav" do
-      
+
        div :id => 'nav' do
          ul do
 
@@ -90,10 +91,10 @@ b1.src = '/images/butterfly.gif';"
              ul :class => 'submenu', :style=> 'display: block' do
                li do
                  link_to('Paintings', paintings_url)
-               end 
+               end
                li do
                  link_to('Photography', photography_url)
-               end 
+               end
              end
            end
            li do
@@ -116,18 +117,18 @@ b1.src = '/images/butterfly.gif';"
      end
 
      div :class => 'float-right-top absolute' do
-       img :src => '/images/bird-right.gif'
+       img :src => '/assets/bird-right.gif'
      end
 
      div :id => "header", :style=>'' do
        #h1 { show_page_nav }
        div :id=>'breadcrumb' do
-         h2 :class => 'subtitle' do 
+         h2 :class => 'subtitle' do
            show_page_nav
          end
        end
-       a :href => '/' do 
-         div do 
+       a :href => '/' do
+         div do
            h1 {'Nayabei'}
          end
        end
@@ -138,14 +139,14 @@ b1.src = '/images/butterfly.gif';"
        div :id => "gullery_content" do
          yield
        end
-    
- 
+
+
        div :id => "footer" do
          #textilize %(modified by "pablo":http://mypage.iu.edu/~gvanwoer)
          if session[:user]
-           link_to( "Logout", logout_url)
+           text! link_to( "Logout", logout_url)
          else
-           link_to( "Login", login_url)
+           text! link_to( "Login", login_url)
          end
          div :style=>"position:absolute;bottom:0;right:0;" do
            span {"Web design by "}
@@ -154,11 +155,11 @@ b1.src = '/images/butterfly.gif';"
            end
          end
        end
-    
+
      end
      #google analytics helper function
      if @current_action != 'login' && @current_action != 'logout'
-       show_analytics
+       text! show_analytics
      end
    end
 end
