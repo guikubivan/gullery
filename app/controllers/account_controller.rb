@@ -33,7 +33,7 @@ class AccountController < ApplicationController
   # Keep in mind that this will cause your session to stick around for 4 weeks.  If this is undesirable, use a plain old cookie.
   def login
     return unless request.post?
-    ::ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS.update(:session_expires => 4.weeks.from_now) if params[:remember_me]
+    #TODO if params[:remember_me]
     self.current_user = User.authenticate(params[:login], params[:password])
     p self.current_user
     if current_user
