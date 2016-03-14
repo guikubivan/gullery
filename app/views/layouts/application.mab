@@ -71,7 +71,9 @@ b0.src = '/assets/butterfly0.gif';
 b1 = new Image();
 b1.src = '/assets/butterfly.gif';"
      end
-   end
+
+     text! csrf_meta_tags
+   end #head
 
    body do
      div :id =>"left-nav" do
