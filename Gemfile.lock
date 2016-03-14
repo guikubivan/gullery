@@ -38,10 +38,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
     i18n (0.6.1)
+    in_place_editing (1.2.0)
     journey (1.0.4)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
@@ -56,6 +58,8 @@ GEM
     mysql (2.9.1)
     pg (0.17.1)
     polyglot (0.3.4)
+    prototype-rails (3.2.1)
+      rails (~> 3.2)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -109,10 +113,13 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   coffee-rails (~> 3.2.1)
+  dynamic_form
+  in_place_editing
   jquery-rails
   mab
   mysql
   pg
+  prototype-rails
   rails (= 3.2.13)
   rmagick
   sass-rails (~> 3.2.3)

@@ -1,11 +1,12 @@
+require 'rmagick'
 class Asset < ActiveRecord::Base
   include Magick
-  
+
   validates_presence_of :project_id, :path
   validates_associated :project
 
   belongs_to :project
-    
+
   #acts_as_taggable
 
   # Starts with '/' but is relative to 'public'
@@ -19,7 +20,7 @@ class Asset < ActiveRecord::Base
   def self.thumbnail_width
    @@thumbnail_width.to_s
   end
-  
+
   def self.thumbnail_height
     @@thumbnail_height.to_s
   end
@@ -67,7 +68,7 @@ class Asset < ActiveRecord::Base
       i.resize!(w, h)
       i.crop(0, 0, @@thumbnail_width, @@thumbnail_height)
     end
-    
+
     image.write(File.expand_path("public#{self.web_path(:thumb)}", RAILS_ROOT))
   end
 
@@ -132,9 +133,9 @@ protected
       #get only the filename, not the whole path
       just_filename = value.gsub(/^.*(\\|\/)/, '')
       #NOTE: File.basename doesn't work right with Windows paths on Unix
-      #INCORRECT: just_filename = File.basename(value.gsub('\\\\', '/')) 
+      #INCORRECT: just_filename = File.basename(value.gsub('\\\\', '/'))
       #replace all none alphanumeric, underscore or periods with underscore
-      just_filename.gsub(/[^\w\.\-]/,'_') 
+      just_filename.gsub(/[^\w\.\-]/,'_')
   end
 
 end

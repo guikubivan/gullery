@@ -11,7 +11,9 @@ Gullery::Application.routes.draw do
   match 'paintings/rss', :to => "projects#rss", :as => "paintings_rss", :defaults => {:id => 1}
   match 'photography/rss', :to => "projects#rss", :as => "photography_rss", :defaults => {:id => 2}
 
-  resources :projects
+  resources :projects do
+    post 'sort', on: :collection
+  end
 
   #match 'assets/:id' => 'assets#show'
 
@@ -19,6 +21,8 @@ Gullery::Application.routes.draw do
 
 
   match 'feed', :to => "projects#feed"
+
+  resources :assets
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

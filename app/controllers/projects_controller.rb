@@ -12,8 +12,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find params[:id]
-    p @project
+    @project = Project.find(params[:id])
+    @asset = Asset.new
+    in_place_editor
+
   end
 
   def show_paintings

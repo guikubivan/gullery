@@ -1,0 +1,6 @@
+<%= form_for(:project, :url => { :controller => 'projects', :action => 'create' }, :html => { :onsubmit => "Element.show('loading')" } ) do | form | %>
+  <div>New Project Name:</div>
+  <%= text_field(:project, :name, :size => 20) %>
+  <%= submit_tag("Save") %>
+  <%= image_tag('spinner.gif', :style => 'display: none;', :id => 'loading') %>
+<%- end %>

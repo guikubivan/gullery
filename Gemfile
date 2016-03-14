@@ -37,8 +37,11 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'RedCloth'
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick'
 gem "mab"
+gem 'dynamic_form'
+gem 'in_place_editing'
+gem 'prototype-rails'
 
 group :test, :development  do
   #Only needed if you're using mysql locally

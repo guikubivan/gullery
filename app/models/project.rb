@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   has_many :assets, :order => 'position, created_at', :dependent => :destroy
 
   #acts_as_taggable
+  attr_accessible :name
 
   def visible_assets
     self.assets.inject([]) {|ary, asset| asset.is_visible ? ary << asset : ary }

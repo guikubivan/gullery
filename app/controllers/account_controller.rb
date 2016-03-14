@@ -5,6 +5,11 @@ class AccountController < ApplicationController
   #observer :user_observer
 
   before_filter :login_required, :only => [:update_description]
+  before_filter :init_user_param
+
+  def init_user_param
+    params[:user] ||=  {}
+  end
 
   def update_description
     current_user.description = params[:value]
@@ -50,12 +55,17 @@ class AccountController < ApplicationController
       redirect_to(:controller => '/')
       return
     end
-    @user = User.new(params[:user])
+    @user = User.new
+    @user.login = params[:user][:login]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.company = params[:user][:company]
+
     return unless request.post?
     #@user.website = "http://#{params[:user][:website]}"
     if @user.save
       self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
-      redirect_back_or_default(:controller => '/')
+      redirect_back_or_default(root_path)
       flash[:notice] = "Thanks for signing up!"
     end
   end
@@ -73,7 +83,7 @@ class AccountController < ApplicationController
   def logout
     self.current_user = nil
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default(:controller => '/')
+    redirect_back_or_default(root_path)
   end
 
 end

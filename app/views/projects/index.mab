@@ -7,15 +7,16 @@ ul :id => 'project_list' do
 end
 
 if session[:user]
-  #render(:partial => 'project_form')
-  in_place_editor "user_description",
-                  :url => account_url(:action => 'update_description'),
-                  :rows => 5 # ,
-                  #:highlight_color => '#7E302E',
-                  #:highlight_end_color => '#1e1e1e'
-  #sortable_element  'project_list',
-  #                  :url => capture { projects_url(:action => 'sort') },
-  #                  :handle => 'handle',
-  #                  :loading => "Element.show('loading')",
-  #                  :complete => "Element.hide('loading')"
+  text! render(:partial => 'project_form')
+  text! in_place_editor( "user_description",
+                         :url => account_url(:action => 'update_description'),
+                         :rows => 5 # ,
+                         #:highlight_color => '#7E302E',
+                         #:highlight_end_color => '#1e1e1e'
+                       )
+  text! sortable_element  'project_list',
+                    :url => sort_projects_url(:action => 'sort'),
+                    :handle => 'handle',
+                    :loading => "Element.show('loading')",
+                    :complete => "Element.hide('loading')"
 end
