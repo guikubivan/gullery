@@ -13,6 +13,8 @@ Gullery::Application.routes.draw do
 
   resources :projects do
     post 'sort', on: :collection
+    get 'rss', on: :member
+    get 'feed', on: :collection
   end
 
   #match 'assets/:id' => 'assets#show'

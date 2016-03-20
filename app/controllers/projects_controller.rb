@@ -59,14 +59,19 @@ class ProjectsController < ApplicationController
   end
 
   def feed
-    @projects = Project.find(:all, :order => "id DESC")
-    render_without_layout
-    @headers["Content-Type"] = "application/xml; charset=utf-8"
+    @projects = Project.order('id DESC')
+    p @projects
+    request.format = "xml"
+    respond_to do |format|
+      format.xml {render :layout => false, :content_type => 'application/xml'}
+    end
   end
 
   def rss
-    @project = Project.find params[:id]
-    render_without_layout
-    @headers["Content-Type"] = "application/xml; charset=utf-8"
+    @project = Project.find(params[:id])
+    request.format = "xml"
+    respond_to do |format|
+      format.xml {render :layout => false, :content_type => 'application/xml'}
+    end
   end
 end

@@ -9,7 +9,7 @@ xml.rss "version" => "2.0", "xmlns:media" => "http://search.yahoo.com/mrss/" do
    count = 0
    @projects.each do |project|
 #     xml.item do
-#       xml.title       project.name 
+#       xml.title       project.name
 #       xml.description project.description
 #       xml.guid        url_for :only_path => false, :controller => 'projects', :action => 'show', :id => project.id
 #     end
@@ -17,7 +17,7 @@ xml.rss "version" => "2.0", "xmlns:media" => "http://search.yahoo.com/mrss/" do
      project.assets.each do |asset|
         xml.item do
           xml.title       asset.caption
-          @d = asset.measurements != '' ? asset.artwork_medium + "(" + asset.measurements + ")" : asset.artwork_medium 
+          @d = asset.measurements != '' ? asset.artwork_medium + "(" + asset.measurements + ")" : asset.artwork_medium
           #xml.description asset.artwork_medium + "(" + asset.measurements + ")"
           xml.description @d
           xml.tag!("media:group") do

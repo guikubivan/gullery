@@ -126,6 +126,13 @@ class Asset < ActiveRecord::Base
     nil
   end
 
+  def artwork_medium
+    self[:artwork_medium] || ''
+  end
+
+  def measurements
+    self[:measurements] || ''
+  end
 protected
 
   # Fixes a 'feature' of IE where it passes the entire path instead of just the filename
