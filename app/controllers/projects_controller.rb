@@ -7,8 +7,8 @@ class ProjectsController < ApplicationController
       redirect_to signup_url
       return
     end
-    @user = User.find(:first)
-    @projects = Project.find :all, :order => 'position, created_at'
+    @user = User.first
+    @projects = Project.order('position, created_at')
   end
 
   def show
@@ -45,14 +45,14 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find params[:id]
+    @project = Project.find(params[:id])
     @project.destroy
   end
 
   def sort
     project_ids = params[:project_list]
     project_ids.each_with_index do |project_id, index|
-      project = Project.find project_id
+      project = Project.find(project_id)
       project.update_attribute(:position, index)
     end
     render :nothing => true
