@@ -43,12 +43,13 @@ gem 'dynamic_form'
 gem 'in_place_editing'
 gem 'prototype-rails'
 
+#Choose what you need below
+gem 'mysql'
+gem "sqlite3"
+gem "pg"
+
 group :test, :development  do
-  #Only needed if you're using mysql locally
-  gem 'mysql'
-  gem "sqlite3"
 end
 
 group :production do
-  gem "pg"
 end
