@@ -2,10 +2,9 @@ html do
    head do
      title { show_page_title }
      #title { "Nayabei Vanwoerkom - Artwork" }
-     text! stylesheet_link_tag 'style', 'jquery.jcarousel.css', 'skin'
+     text! stylesheet_link_tag 'application', :media => 'all'
 
      if session[:user]
-       text! stylesheet_link_tag 'lightbox'
        text! javascript_include_tag "application"
      else
        #gallery fade effect
@@ -83,7 +82,7 @@ b1.src = '/assets/butterfly.gif';"
 
            li :class => 'home' do
              a :href => '/' do
-               img :src => '/images/home.gif', :title => 'Home'
+               image_tag 'home.gif', :title => 'Home'
              end
            end
            li :class => 'artwork' do

@@ -1,4 +1,4 @@
-require 'rmagick'
+require 'RMagick'
 class Asset < ActiveRecord::Base
   include Magick
 

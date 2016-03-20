@@ -289,7 +289,7 @@ input, textarea {
   /*border: 1px solid black;*/
   padding: 30px 10px 30px 70px;
   text-decoration: none;
-  background: url(../images/butterfly0.gif) 0px 50% no-repeat;
+  background: url(/assets/butterfly0.gif) 0px 50% no-repeat;
 /*  width: 100%;
   overflow: hidden;
   display: block;*/
@@ -315,7 +315,7 @@ input, textarea {
   /*color: #FFD4AA;*/
   color: #FF4000;
   /*font-weight:bold;*/
-  background: url(../images/butterfly.gif) 0px 50% no-repeat;
+  background: url(/assets/butterfly.gif) 0px 50% no-repeat;
   padding: 30px 10px 30px 70px;
 }
 
@@ -453,7 +453,7 @@ img {
 /*end images*/
 
 hr.diamond {
-  background: url(/images/diamond.png) repeat top left;
+  background: url(/assets/diamond.png) repeat top left;
   height: 20px;
 /*  margin : 10px 0;*/
 }

@@ -37,7 +37,8 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'RedCloth'
-gem 'rmagick'
+gem "rmagick", "~>2.13.2", :require => 'RMagick'
+#gem 'rmagick'
 gem "mab"
 gem 'dynamic_form'
 gem 'in_place_editing'
