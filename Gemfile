@@ -53,4 +53,5 @@ group :test, :development  do
 end
 
 group :production do
+  gem 'therubyracer'
 end
